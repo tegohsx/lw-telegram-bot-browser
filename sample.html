@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Telegram</title>
+</head>
+
+<body>
+    <h2>Log</h2>
+    <ul id="list-req">
+
+    </ul>
+    <script src="./telegram.js"></script>
+    <script>
+        let listReq = document.querySelector('#list-req')
+        bot.start(ctx => {
+            ctx.replyWithText('Selamat datang')
+            let li = document.createElement("li")
+            li.textContent = `User: ${ctx.chat_id} started the bot.`
+            listReq.append(li)
+        })
+        bot.text(/halo/i, ctx => {
+            ctx.replyWithText('Haiiii...')
+            let li = document.createElement("li")
+            li.textContent = `User: ${ctx.chat_id} say Halo.`
+            listReq.append(li)
+        })
+
+        bot.kicked(ctx => {
+            let li = document.createElement("li")
+            li.textContent = `User: ${ctx.chat_id} block the bot.`
+            listReq.append(li)
+        })
+
+        bot.message(ctx => {
+            ctx.telegram.sendMessage(ctx.chat_id, 'Ha! Apa?')
+            let li = document.createElement("li")
+            li.textContent = `User: ${ctx.chat_id} send unknown.`
+            listReq.append(li)
+        })
+
+        bot.init({
+            token: '5638406110:AAHVkJe2H5w4ixyAornEiakBqLKvtaF37Fs',
+        })
+
+    </script>
+</body>
+
+</html>
