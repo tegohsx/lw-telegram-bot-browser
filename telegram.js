@@ -446,7 +446,7 @@ function init_kIsqiIDBsKvWgbdFBvZQ(){
                     } else {
                         callback(null, resJson)
                     }
-            } catch (e) {
+            } catch (error) {
                 if (typeof (callback) === 'function')
                     callback(error)
             }
